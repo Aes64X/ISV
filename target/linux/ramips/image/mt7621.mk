@@ -514,8 +514,8 @@ define Device/lenovo_newifi-d1
   IMAGE_SIZE := 32448k
   DEVICE_VENDOR := Newifi
   DEVICE_MODEL := D1
-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3 kmod-sdhci-mt7620 \
-	kmod-usb-ledtrig-usbport wpad-openssl
+  DEVICE_PACKAGES := kmod-mt7603e kmod-mt76x2e kmod-usb3 kmod-sdhci-mt7620 \
+	kmod-usb-ledtrig-usbport luci-app-mtwifi
   SUPPORTED_DEVICES += newifi-d1
 endef
 TARGET_DEVICES += lenovo_newifi-d1
@@ -1073,7 +1073,7 @@ define Device/xiaoyu_xy-c5
   IMAGE_SIZE := 32448k
   DEVICE_VENDOR := XiaoYu
   DEVICE_MODEL := XY-C5
-  DEVICE_PACKAGES := kmod-ata-ahci kmod-usb3
+  DEVICE_PACKAGES := kmod-usb3
 endef
 TARGET_DEVICES += xiaoyu_xy-c5
 
