@@ -17,7 +17,7 @@ DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fs
 block-mount coremark kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw wget libustream-openssl ca-certificates \
 default-settings luci luci-app-upnp luci-app-webadmin luci-app-fileassistant kmod-fs-ext4 luci-theme-oceanic \
 luci-app-ssr-plus luci-app-adguardhome luci-app-control-timewol luci-app-control-webrestriction luci-app-control-weburl \
-luci-app-vlmcsd \
+luci-app-vlmcsd luci-app-zerotier luci-app-timecontrol \
 luci-app-sfe \
 # For the basic set
 DEFAULT_PACKAGES.basic:=
