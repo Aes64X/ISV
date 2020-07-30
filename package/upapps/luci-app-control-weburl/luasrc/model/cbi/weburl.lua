@@ -3,7 +3,7 @@ local a, t, e
 a = Map("weburl", translate("网址过滤"), translate(
             "在这里设置关键词过滤，可以是URL里任意字符，可以过滤如视频网站、QQ、迅雷、淘宝。。。"))
 a.template = "weburl/index"
-t = a:section(TypedSection, "basic", translate("Running Status"))
+t = a:section(TypedSection, "basic", translate("运行状态"))
 t.anonymous = true
 e = t:option(DummyValue, "weburl_status", translate("当前状态"))
 e.template = "weburl/weburl"
