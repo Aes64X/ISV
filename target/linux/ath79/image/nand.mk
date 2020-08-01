@@ -53,7 +53,7 @@ define Device/domywifi_dw33d
   DEVICE_VENDOR := DomyWifi
   DEVICE_MODEL := DW33D
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-storage kmod-usb-ledtrig-usbport \
-	kmod-ath10k-ct ath10k-firmware-qca988x-ct
+	kmod-ath10k ath10k-firmware-qca988x
   KERNEL_SIZE := 5120k
   IMAGE_SIZE := 98304k
   BLOCKSIZE := 128k
