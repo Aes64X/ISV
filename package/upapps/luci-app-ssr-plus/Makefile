@@ -21,7 +21,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_Redsocks2
 	bool "Include Redsocks2"
-	default y if i386||x86_64||arm||aarch64
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun
 	bool "Include Kcptun"
