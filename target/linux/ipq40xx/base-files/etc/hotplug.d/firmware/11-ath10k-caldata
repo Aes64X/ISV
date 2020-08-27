@@ -39,9 +39,6 @@ case "$FIRMWARE" in
 	openmesh,a62)
 		caldata_extract "0:ART" 0x9000 0x2f20
 		;;
-	p2w,r619ac-128m)
-		caldata_extract "ART" 0x9000 0x2f20
-		;;
 	linksys,ea8300)
 		caldata_extract "ART" 0x9000 0x2f20
 		# OEM assigns 4 sequential MACs
