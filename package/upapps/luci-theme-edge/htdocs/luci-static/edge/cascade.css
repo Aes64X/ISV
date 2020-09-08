@@ -381,7 +381,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-background-color: #fff;
 overflow-x: hidden;
 }
 select:first-child {
@@ -1165,12 +1164,12 @@ tr > th,
 }
 
 table > tbody > tr,
-div > .table > .tr {
+div > .table > .tr,.cbi-map >.cbi-section .cbi-value {
 	 background-color: #fff;
   transition: background-color .25s
 }
 table > tbody > tr:nth-of-type(4n+2),
-div > .table > .tr:nth-of-type(4n+2) {
+div > .table > .tr:nth-of-type(4n+2),.cbi-map >.cbi-section .cbi-value:nth-of-type(2n) {
 background-color: #e5effd;
 }
 table > tbody > tr:nth-of-type(4n+2):hover,
@@ -1184,6 +1183,12 @@ div > .table > .tr:nth-of-type(4n) {
 table > tbody > tr:nth-of-type(4n):hover,
 div > .table > .tr:nth-of-type(4n):hover {
   background-color: rgba(223, 56, 18, 0.09);
+}
+.cbi-map >.cbi-section .cbi-value:nth-of-type(2n) {
+background-color: #e5effdb8;
+}
+.cbi-map >.cbi-section .cbi-value:nth-of-type(2n):hover {
+background-color: #e5effd;
 }
 
 /* fix multiple table */
@@ -1460,18 +1465,11 @@ ul.tabs,.tabmenu .tabs,#tabmenu .tabs,ul.cbi-tabmenu{
   transition: opacity 0.25s ease-in;
   margin: inherit !important;
 }
-.cbi-section[id] .cbi-section-remove:nth-of-type(4n+3),
-.cbi-section[id] .cbi-section-node:nth-of-type(4n+4) {
-  background-color: #f9f9f9;
-}
 .cbi-section-node-tabbed {
   margin-top: 0;
   padding: 0;
    transition: box-shadow .25s, -webkit-box-shadow .25s;
     border-radius: 2px;
-}
-.cbi-tabcontainer > .cbi-value:nth-of-type(2n) {
-  background-color: #f9f9f9;
 }
 .cbi-value-field,
 .cbi-value-description {
@@ -2500,6 +2498,7 @@ text-align:center;
 .node-main-login .main .main-right #maincontent .container .cbi-map .cbi-section .cbi-section-node .cbi-value {
   display: block;
   padding: 0;
+background: none;
 }
 .node-main-login .main .main-right #maincontent .container .cbi-map .cbi-section .cbi-section-node .cbi-value * {
   display: inline-block !important;
@@ -3564,7 +3563,7 @@ background-color:white !important;
 }
 input,select{
 height: 2.2rem;
-
+background: none;
 }
 input[type=button],input[type=submit],input[type=reset]{
 	height:auto !important;
