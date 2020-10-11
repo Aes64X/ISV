@@ -1499,7 +1499,7 @@ ul.tabs,.tabmenu .tabs,#tabmenu .tabs,ul.cbi-tabmenu{
 .cbi-value {
   display: inline-block;
   width: 100%;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   line-height: 2.4rem;
 }
 .cbi-value-field >*{
@@ -2079,7 +2079,6 @@ textarea {
 }
 #syslog {
   font-size: small;
-  line-height: 1.25;
   width: 100%;
   min-height: 25rem;
   padding: 1rem;
