@@ -30,11 +30,6 @@ switch_enable=0
 switch_server=$1
 CRON_FILE=/etc/crontabs/root
 threads=1
-GLOBAL_SERVER="nil"
-NETFLIX_SERVER="nil"
-UDP_RELAY_SERVER="nil"
-run_mode="router"
-kcp_server=""
 
 uci_get_by_name() {
 	local ret=$(uci get $NAME.$1.$2 2>/dev/null)
@@ -260,8 +255,6 @@ start_dns() {
 	start_pdnsd() {
 		local usr_dns="$1"
 		local usr_port="$2"
-		[ -z "$usr_dns" ] && usr_dns="8.8.8.8"
-		[ -z "$usr_port" ] && usr_port="53"
 		if [ ! -f "/var/pdnsd/pdnsd.cache" ]; then
 			mkdir -p /var/pdnsd
 			touch /var/pdnsd/pdnsd.cache
@@ -297,23 +290,21 @@ start_dns() {
 		EOF
 		/usr/sbin/pdnsd -c /var/etc/pdnsd.conf >/dev/null 2>&1 &
 	}
-	ipset_add_dns() {
+	if [ "$ssr_dns" != "0" ]; then
 		case "$run_mode" in
 		gfw) ipset add gfwlist $dnsserver 2>/dev/null ;;
 		oversea) ipset add oversea $dnsserver 2>/dev/null ;;
 		*) ipset add ss_spec_wan_ac $dnsserver nomatch 2>/dev/null ;;
 		esac
-	}
+	fi
 	case "$ssr_dns" in
 	1)
 		start_pdnsd $dnsserver $dnsport
-		ipset_add_dns
 		pdnsd_enable_flag=1
 		;;
 	2)
 		microsocks -i 127.0.0.1 -p 10802 ssr-dns >/dev/null 2>&1 &
 		dns2socks 127.0.0.1:10802 $dnsserver:$dnsport 127.0.0.1:5335 -q >/dev/null 2>&1 &
-		ipset_add_dns
 		pdnsd_enable_flag=2
 		;;
 	esac
@@ -632,27 +623,24 @@ start_rules() {
 		GLOBAL_SERVER=$switch_server
 		switch_enable=1
 	fi
-	[ "$GLOBAL_SERVER" == "nil" ] && return 1
-	local server=$(get_host_ip $(uci_get_by_name $GLOBAL_SERVER server))
-	[ "$server" == "ERROR" ] && server=$(uci_get_by_name $GLOBAL_SERVER ip)
-	local local_port=$(uci_get_by_name $GLOBAL_SERVER local_port 1234)
-	local netflix="0"
+	if [ "$GLOBAL_SERVER" == "nil" ]; then
+		return 1
+	fi
 	NETFLIX_SERVER=$(uci_get_by_type global netflix_server nil)
-	if [ "$NETFLIX_SERVER" != "nil" ]; then
-		if [ "$NETFLIX_SERVER" == "same" ]; then
-			netflix="2"
-			NETFLIX_SERVER=$GLOBAL_SERVER
-		else
-			netflix="1"
-		fi
+	if [ "$NETFLIX_SERVER" == "same" ]; then
+		NETFLIX_SERVER=$GLOBAL_SERVER
 	fi
-	netflix_ip=$(get_host_ip $(uci_get_by_name $NETFLIX_SERVER server))
-	if [ "$netflix_ip" == "ERROR" ]; then
-		netflix_ip=$(uci_get_by_name $NETFLIX_SERVER ip)
-	fi
+	run_mode=$(uci_get_by_type global run_mode)
 	UDP_RELAY_SERVER=$(uci_get_by_type global udp_relay_server)
-	[ "$UDP_RELAY_SERVER" == "same" ] && UDP_RELAY_SERVER=$GLOBAL_SERVER
-	if [ "$(uci_get_by_name $GLOBAL_SERVER kcp_enable 0)" == "1" ]; then
+	if [ "$UDP_RELAY_SERVER" == "same" ] ; then
+		UDP_RELAY_SERVER=$GLOBAL_SERVER
+	fi
+	local server=$(get_host_ip $(uci_get_by_name $GLOBAL_SERVER server))
+	if [ "$server" == "ERROR" ]; then
+		server=$(uci_get_by_name $GLOBAL_SERVER ip)
+	fi
+	local kcp_enable=$(uci_get_by_name $GLOBAL_SERVER kcp_enable 0)
+	if [ $kcp_enable == "1" ]; then
 		kcp_server=$server
 		kcp_flag=1
 	fi
@@ -660,7 +648,6 @@ start_rules() {
 	local lan_ac_ips=$(uci_get_by_type access_control lan_ac_ips)
 	local lan_ac_mode=$(uci_get_by_type access_control lan_ac_mode)
 	local router_proxy=$(uci_get_by_type access_control router_proxy)
-	local ARG_UDP=""
 	if [ -n "$UDP_RELAY_SERVER" ]; then
 		if [ "$kcp_flag" == "0" ]; then
 			local type=$(uci_get_by_name $UDP_RELAY_SERVER type)
@@ -668,7 +655,10 @@ start_rules() {
 			tun | naiveproxy) ;;
 			*) ARG_UDP="-U";;
 			esac
-			local udp_server=$(uci_get_by_name $UDP_RELAY_SERVER server)
+			local udp_server=$(get_host_ip $(uci_get_by_name $UDP_RELAY_SERVER server))
+			if [ "$udp_server" == "ERROR" ]; then
+				udp_server=$(uci_get_by_name $UDP_RELAY_SERVER ip)
+			fi
 			local udp_local_port=1357
 		fi
 	fi
@@ -691,14 +681,14 @@ start_rules() {
 	else
 		proxyport="-m multiport --dports 22,53,587,465,995,993,143,80,443,853"
 	fi
-	if [ "$NETFLIX_SERVER" == "nil" ]; then
-		netflix="0"
-	else
+	if [ "$NETFLIX_SERVER" != "nil" ]; then
 		if [ "$NETFLIX_SERVER" != "$GLOBAL_SERVER" ]; then
 			netflix="1"
 		else
 			netflix="2"
 		fi
+	else
+		netflix="0"
 	fi
 	get_arg_out() {
 		case "$(uci_get_by_type access_control router_proxy 1)" in
@@ -774,7 +764,6 @@ start() {
 boot() {
 	echo "$(date "+%Y-%m-%d %H:%M:%S") boot！" >/tmp/ssrplus.log
 	ulimit -n 65535
-	/usr/share/shadowsocksr/chinaipset.sh
 	start >/dev/null 2>&1
 }
 
