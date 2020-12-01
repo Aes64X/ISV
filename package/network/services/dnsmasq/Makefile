@@ -121,7 +121,7 @@ define Package/dnsmasq-full/config
 		default n
 	config PACKAGE_dnsmasq_full_tftp
 		bool "Build with TFTP server support."
-		default y
+		default n
 	endif
 endef
 
