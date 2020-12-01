@@ -764,7 +764,7 @@ start() {
 boot() {
 	echo "$(date "+%Y-%m-%d %H:%M:%S") boot！" >/tmp/ssrplus.log
 	ulimit -n 65535
-	start >/dev/null 2>&1
+	start
 }
 
 stop() {
