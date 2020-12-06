@@ -5,8 +5,8 @@ move_config() {
 
 	if export_bootdevice && export_partdevice partdev 1; then
 		if mount -o rw,noatime "/dev/$partdev" /mnt; then
-			if [ -f "/mnt/$BACKUP_FILE" ]; then
-				mv -f "/mnt/$BACKUP_FILE" /
+			if [ -f "/mnt/$CONF_TAR" ]; then
+				mv -f "/mnt/$CONF_TAR" /
 			fi
 			umount /mnt
 		fi
