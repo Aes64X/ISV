@@ -18,7 +18,6 @@ block-mount kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw wget libustre
 default-settings luci luci-app-upnp luci-app-webadmin luci-app-fileassistant kmod-fs-ext4 luci-theme-edge luci-app-autoreboot \
 luci-app-ssr-plus luci-app-control-webrestriction luci-app-control-weburl \
 luci-app-vlmcsd luci-app-zerotier luci-app-timecontrol \
-luci-app-sfe \
 # For the basic set
 DEFAULT_PACKAGES.basic:=
 # For nas targets
