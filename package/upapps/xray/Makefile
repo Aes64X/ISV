@@ -45,7 +45,7 @@ define Package/$(PKG_NAME)
   CATEGORY:=Network
   SUBMENU:=Project X
   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-certificates
-  PROVIDES:=v2ray
+#  PROVIDES:=v2ray
 endef
 
 define Package/$(PKG_NAME)/description
