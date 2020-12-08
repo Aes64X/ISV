@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += uboot-envtools partx-utils fstrim e2fsprogs mkf2fs nano kmod-gpio-button-hotplug \
 		    automount autocore-arm fdisk kmod-fs-f2fs kmod-fs-exfat ethtool haveged htop lm-sensors \
-		    luci-app-zerotier
+		    luci-app-zerotier luci-app-nfs luci-app-qbittorrent luci-app-ttyd
 
 KERNELNAME:=Image dtbs
 
