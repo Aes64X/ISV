@@ -7,9 +7,9 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 ---
  arch/arm/dts/Makefile                      |   1 +
  arch/arm/dts/rk3399-nanopi-r4s-u-boot.dtsi |   8 ++
- arch/arm/dts/rk3399-nanopi-r4s.dts         | 116 +++++++++++++++++++++
+ arch/arm/dts/rk3399-nanopi-r4s.dts         | 103 +++++++++++++++++++++
  configs/nanopi-r4s-rk3399_defconfig        |  62 +++++++++++++
- 4 files changed, 187 insertions(+)
+ 4 files changed, 174 insertions(+)
  create mode 100644 arch/arm/dts/rk3399-nanopi-r4s-u-boot.dtsi
  create mode 100644 arch/arm/dts/rk3399-nanopi-r4s.dts
  create mode 100644 configs/nanopi-r4s-rk3399_defconfig
@@ -37,7 +37,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +#include "rk3399-sdram-lpddr4-100.dtsi"
 --- /dev/null
 +++ b/arch/arm/dts/rk3399-nanopi-r4s.dts
-@@ -0,0 +1,116 @@
+@@ -0,0 +1,103 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * FriendlyElec NanoPC-T4 board device tree source
@@ -106,18 +106,6 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +
 +&fusb0 {
 +	status = "disabled";
-+};
-+
-+&leds {
-+	led@2 {
-+		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		label = "lan_led";
-+	};
-+
-+	led@3 {
-+		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		label = "wan_led";
-+	};
 +};
 +
 +&pcie0 {
