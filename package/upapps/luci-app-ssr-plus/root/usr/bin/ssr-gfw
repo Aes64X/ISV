@@ -16,8 +16,12 @@ print cur;
 prev = cur;
 }
 }' | sort -u
-}
-generate_china_banned /tmp/ssr-update.$1 >/tmp/gfw.txt
 rm -f /tmp/gfwlist.txt
+}
+if [ $(grep -w '.' /tmp/ssr-update.$1) ];then
+generate_china_banned /tmp/ssr-update.$1 >/tmp/gfw.txt
+else
+cp -rf /tmp/ssr-update.$1 /tmp/gfw.txt
+fi
 sed '/.*/s/.*/server=\/&\/127.0.0.1#5335\nipset=\/&\/gfwlist/' /tmp/gfw.txt >/tmp/ssr-update.$1
 rm -f /tmp/gfw.txt
