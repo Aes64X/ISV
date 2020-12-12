@@ -398,11 +398,6 @@ o:depends("type", "vmess")
 o:depends({type="vless", xtls=false})
 o:depends("type", "trojan")
 
-o = s:option(Value, "tls_host", translate("TLS Host"))
-o:depends("type", "trojan")
-o:depends("tls", "1")
-o.rmempty = true
-
 -- XTLS
 if nixio.fs.access("/usr/bin/xray") or nixio.fs.access("/usr/bin/xray/xray") then
 o = s:option(Flag, "xtls", translate("XTLS"))
@@ -417,6 +412,12 @@ for _, v in ipairs(flows) do o:value(v, v) end
 o.rmempty = true
 o.default = "xtls-rprx-splice"
 o:depends("xtls", true)
+
+o = s:option(Value, "tls_host", translate("TLS Host"))
+o:depends("type", "trojan")
+o:depends("tls", "1")
+o:depends("xtls", "1")
+o.rmempty = true
 
 -- [[ allowInsecure ]]--
 o = s:option(Flag, "insecure", translate("allowInsecure"))

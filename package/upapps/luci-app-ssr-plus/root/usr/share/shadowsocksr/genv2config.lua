@@ -57,14 +57,14 @@ outbound = {
 -- 底层传输配置
 	streamSettings = {
 		network = server.transport,
-		security = (server.tls == '1') and ((server.xtls == '1') and "xtls" or "tls") or "none",
-		tlsSettings = (server.tls == '1' and server.xtls ~= '1' and (server.insecure == "1" or server.tls_host)) and {
+		security = (server.xtls == '1') and "xtls" or (server.tls == '1') and "tls" or "none",
+		tlsSettings = (server.tls == '1' and (server.insecure == "1" or server.tls_host or server.ws_host)) and {
 			allowInsecure = (server.insecure == "1") and true or nil,
-			serverName=server.tls_host
+			serverName=server.tls_host or server.ws_host
 		} or nil,
-		xtlsSettings = (server.xtls == '1' and (server.insecure == "1" or server.tls_host)) and {
+		xtlsSettings = (server.xtls == '1' and (server.insecure == "1" or server.tls_host or server.ws_host)) and {
 			allowInsecure = (server.insecure == "1") and true or nil,
-			serverName=server.tls_host
+			serverName=server.tls_host or server.ws_host
 		} or nil,
 		tcpSettings = (server.transport == "tcp" and server.tcp_guise == "http") and {
 			header = {
@@ -90,10 +90,10 @@ outbound = {
 			},
 			seed = server.seed or nil
 		} or nil,
-		wsSettings = (server.transport == "ws") and (server.ws_path ~= nil or server.ws_host ~= nil) and {
+		wsSettings = (server.transport == "ws") and (server.ws_path or server.ws_host or (server.tls == '1' and server.tls_host)) and {
 			path = server.ws_path,
-			headers = (server.ws_host ~= nil) and {
-				Host = server.ws_host
+			headers = (server.ws_host or (server.tls == '1' and server.tls_host)) and {
+				Host = server.ws_host or server.tls_host
 			} or nil,
 		} or nil,
 		httpSettings = (server.transport == "h2") and {
