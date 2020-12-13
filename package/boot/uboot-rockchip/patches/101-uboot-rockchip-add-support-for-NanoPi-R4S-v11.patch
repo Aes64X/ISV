@@ -33,11 +33,11 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 + */
 +
 +#include "rk3399-nanopi4-u-boot.dtsi"
-+#include "rk3399-sdram-ddr3-1866.dtsi"
++#include "rk3399-sdram-ddr3-1600.dtsi"
 +#include "rk3399-sdram-lpddr4-100.dtsi"
 --- /dev/null
 +++ b/arch/arm/dts/rk3399-nanopi-r4s.dts
-@@ -0,0 +1,115 @@
+@@ -0,0 +1,138 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * FriendlyElec NanoPC-T4 board device tree source
@@ -50,11 +50,16 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +
 +/dts-v1/;
 +#include "rk3399-nanopi4.dtsi"
++#include "rk3399-op1-opp.dtsi"
 +
 +/ {
 +	model = "FriendlyElec NanoPi R4S";
 +	compatible = "friendlyarm,nanopi-r4s", "rockchip,rk3399";
-+	
++
++	aliases {
++		ethernet1 = &r8169;
++	};
++
 +	vdd_5v: vdd-5v {
 +		compatible = "regulator-fixed";
 +		regulator-name = "vdd_5v";
@@ -108,10 +113,40 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +	status = "disabled";
 +};
 +
++&leds {
++	lan_led: led-1 {
++		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
++		label = "nanopi-r4s:green:lan";
++	};
++
++	wan_led: led-2 {
++		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
++		label = "nanopi-r4s:green:wan";
++	};
++};
++
++&leds_gpio {
++	rockchip,pins =
++		<0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>,
++		<1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>,
++		<1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
++};
++
 +&pcie0 {
 +	max-link-speed = <1>;
 +	num-lanes = <1>;
 +	vpcie3v3-supply = <&vcc3v3_sys>;
++
++	pcie@0 {
++		reg = <0x00000000 0 0 0 0>;
++		#address-cells = <3>;
++		#size-cells = <2>;
++
++		r8169: pcie@0,0 {
++			reg = <0x000000 0 0 0 0>;
++			local-mac-address = [ 00 00 00 00 00 00 ];
++		};
++	};
 +};
 +
 +&sdhci {
@@ -140,18 +175,6 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +
 +&vcc3v3_sys {
 +	vin-supply = <&vcc5v0_sys>;
-+};
-+
-+&leds {
-+	led@2 {
-+		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		label = "lan_led";
-+	};
-+
-+	led@3 {
-+		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		label = "wan_led";
-+	};
 +};
 --- /dev/null
 +++ b/configs/nanopi-r4s-rk3399_defconfig
