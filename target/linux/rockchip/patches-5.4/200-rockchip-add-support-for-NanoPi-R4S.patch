@@ -6,8 +6,8 @@ Subject: [PATCH] rockchip: add support for NanoPi R4S
 Signed-off-by: Marty Jones <mj8263788@gmail.com>
 ---
  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   | 131 ++++++++++++++++++
- 2 files changed, 132 insertions(+)
+ .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   | 138 ++++++++++++++++++
+ 2 files changed, 139 insertions(+)
  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
 
 --- a/arch/arm64/boot/dts/rockchip/Makefile

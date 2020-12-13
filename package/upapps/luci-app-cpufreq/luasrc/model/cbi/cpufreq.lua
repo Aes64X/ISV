@@ -33,7 +33,7 @@ for _, device_num in ipairs(string.split(device_nums, " ")) do
 	freq_array = string.split(cpu_freqs, " ")
 	governor_array = string.split(cpu_governors, " ")
 
-	s:tab(device_num, translate("CPU " .. device_num .. " Control"))
+	s:tab(device_num, translate("Policy " .. device_num .. " Control"))
 
 	governor = s:taboption(device_num, ListValue, "governor" .. device_num, translate("CPU Scaling Governor"))
 	for _, e in ipairs(governor_array) do
