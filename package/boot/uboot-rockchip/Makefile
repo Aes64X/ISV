@@ -42,8 +42,8 @@ define U-Boot/nanopi-r4s-rk3399/common
   BUILD_SUBTARGET:=armv8
   NAME:=NanoPi R4S
   BUILD_DEVICES:= \
-    friendlyarm_nanopi-r4s-$(lastword $(subst -, ,$(1)))
-  DEPENDS:=+PACKAGE_u-boot-nanopi-r4s-$(lastword $(subst -, ,$(1)))-rk3399:arm-trusted-firmware-rockchip
+    friendlyarm_nanopi-r4s-$(word 3, $(subst -, ,$(1)))
+  DEPENDS:=+PACKAGE_u-boot-nanopi-r4s-$(word 3, $(subst -, ,$(1)))-rk3399:arm-trusted-firmware-rockchip
   PKG_BUILD_DEPENDS:=arm-trusted-firmware-rockchip
   ATF:=rk3399_bl31.elf
 endef
