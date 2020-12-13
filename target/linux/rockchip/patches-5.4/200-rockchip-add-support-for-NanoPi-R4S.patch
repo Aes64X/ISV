@@ -22,7 +22,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
 --- /dev/null
 +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-@@ -0,0 +1,137 @@
+@@ -0,0 +1,131 @@
 +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +/*
 + * FriendlyElec NanoPC-T4 board device tree source
@@ -98,25 +98,6 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +	status = "disabled";
 +};
 +
-+&leds {
-+	lan_led: led-2 {
-+		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
-+		label = "nanopi-r4s:green:lan";
-+	};
-+
-+	wan_led: led-3 {
-+		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		label = "nanopi-r4s:green:wan";
-+	};
-+};
-+
-+&leds_gpio {
-+	rockchip,pins =
-+		<0 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>,
-+		<1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>,
-+		<1 RK_PA1 RK_FUNC_GPIO &pcfg_pull_none>;
-+};
-+
 +&pcie0 {
 +	max-link-speed = <1>;
 +	num-lanes = <1>;
@@ -160,4 +141,16 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +
 +&vcc3v3_sys {
 +	vin-supply = <&vcc5v0_sys>;
++};
++
++&leds {
++	led@1 {
++		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
++		label = "lan_led";
++	};
++
++	led@2 {
++		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
++		label = "wan_led";
++	};
 +};
