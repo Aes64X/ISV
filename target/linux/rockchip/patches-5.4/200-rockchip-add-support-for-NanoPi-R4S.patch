@@ -144,12 +144,12 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +};
 +
 +&leds {
-+	led@2 {
++	led@1 {
 +		gpios = <&gpio1 RK_PA1 GPIO_ACTIVE_HIGH>;
 +		label = "lan_led";
 +	};
 +
-+	led@3 {
++	led@2 {
 +		gpios = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
 +		label = "wan_led";
 +	};
