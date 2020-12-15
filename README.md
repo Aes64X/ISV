@@ -4,15 +4,9 @@
 
 不再支持任何的老旧架构单核处理器，如 QCA9563 等...... 或内核空间小于2M的设备及存储器小于32M的设备
 
-定向支持 Kernel_5.4 x86、R3G(HWNAT)、R2100(HWNAT)、Newifi D1(HWNAT)、XiaoYu C3(HWNAT)、IPQ40xx(挂QCA9984)、K3(不支持屏幕)、Aeroive AP330(挂QCA9880\9882)
+定向支持 Kernel_5.4 x86、XiaoYu C3(HWNAT)、IPQ40xx(挂QCA9984)、Aeroive AP330(挂QCA9880\9882)、Aerohive AP121(Kernel_4.14)
 
-Aerohive AP121(Kernel_4.14)
-
-感谢 1715173329 现已支持NanoPi R4S
-
-随着个人设备更替，K3即将放弃支持。由于x86机箱到位组装完成，路由将完全交于x86和NanoPi R4S
-
-Xiaoyu C3变更为交换机，R3G、R2100变更为纯AP
+现已支持 NanoPi R4S （4GB限定、高频支持，A72最高2.2GHz，A53最高1.8GHz）
 
 建议使用 Ubuntu 18.04               (请勿使用 Ubuntu 20.04)
 
