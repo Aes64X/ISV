@@ -38,8 +38,8 @@
 
 /*  Logo Font */
 @font-face {
-    font-family: 'TypoGraphica';
-    src: url('../fonts/TypoGraphica.eot?#iefix') format('embedded-opentype'), url('../fonts/TypoGraphica.woff') format('woff'), url('../fonts/TypoGraphica.ttf') format('truetype'), url('../fonts/TypoGraphica.svg#TypoGraphica') format('svg');
+    font-family: 'Courgette Regular';
+    src: url('../fonts/Courgette Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Courgette Regular.woff') format('woff'), url('../fonts/Courgette Regular.ttf') format('truetype'), url('../fonts/Courgette Regular.svg#Courgette Regular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
