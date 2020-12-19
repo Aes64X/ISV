@@ -225,7 +225,7 @@ o.rmempty = true
 o = s:option(ListValue, "v2ray_plugin", translate("Plugin Opts"))
 o:value("tls;host=", translate("TLS"))
 o:value("mode=quic;host=", translate("QUIC"))
-o:value("v2ray-plugin", translate("HTTP"))
+o:value(" ", translate("HTTP"))
 o:depends("plugin", "v2ray-plugin")
 o.rmempty = true
 
