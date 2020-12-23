@@ -153,18 +153,19 @@ gen_config_file() {
 			"timeout": $(uci_get_by_name $1 timeout 60),
 			"method": "$(uci_get_by_name $1 encrypt_method_ss)",
 			"reuse_port": true,
-			"fast_open": $fastopen
+			"fast_open": $fastopen,
+			"plugin": "$(uci_get_by_name $1 plugin)",
+			"plugin_opts": "$(uci_get_by_name $1 simple_obfs)$(uci_get_by_name $1 v2ray_plugin)$(uci_get_by_name $1 plugin_opts)"
 			}
 		EOF
-		local plugin=$(uci_get_by_name $1 plugin)
-		if [ -n "$plugin" ]; then
-			[ "$plugin" == "simple-obfs" ] && plugin="obfs-local"
-			if [ -x "/usr/bin/$plugin" ]; then
-				sed -i "s@$hostip\",@$hostip\",\n\"plugin\": \"$plugin\",\n\"plugin_opts\": \"$(uci_get_by_name $1 plugin_opts)\",@" $config_file
-			else
-				echo "$(date "+%Y-%m-%d %H:%M:%S") Warning!!! SIP003 plugin $plugin not found!!!" >>/tmp/ssrplus.log
-			fi
-		fi
+		# local plugin=$(uci_get_by_name $1 plugin)
+		# if [ -n "$plugin" ]; then
+			# if [ -x "/usr/bin/$plugin" ]; then
+				# sed -i "s@$hostip\",@$hostip\",\n\"plugin\": \"$plugin\",\n\"plugin_opts\": \"$(uci_get_by_name $1 ss_obfs)$(uci_get_by_name $1 plugin_opts)\",@" $config_file
+			# else
+				# echo "$(date "+%Y-%m-%d %H:%M:%S") Warning!!! SIP003 plugin $plugin not found!!!" >>/tmp/ssrplus.log
+			# fi
+		# fi
 		;;
 	ssr)
 		cat <<-EOF >$config_file
@@ -410,7 +411,7 @@ start_redir_udp() {
 			echo "$(date "+%Y-%m-%d %H:%M:%S") UDP TPROXY Relay:$name Started!" >>/tmp/ssrplus.log
 			;;
 		vmess | vless)
-			lua /usr/share/shadowsocksr/genv2config.lua $UDP_RELAY_SERVER udp $udp_port >/var/etc/v2-ssr-reudp.json
+			lua /usr/share/shadowsocksr/genv2config.lua $UDP_RELAY_SERVER udp $(uci_get_by_name $UDP_RELAY_SERVER local_port) >/var/etc/v2-ssr-reudp.json
 			sed -i 's/\\//g' /var/etc/v2-ssr-reudp.json
 			$bin -config /var/etc/v2-ssr-reudp.json >/dev/null 2>&1 &
 			echo "$(date "+%Y-%m-%d %H:%M:%S") UDP TPROXY Relay:$($bin -version | head -1) Started!" >>/tmp/ssrplus.log
@@ -653,9 +654,7 @@ start_rules() {
 	local lan_ac_ips=$(uci_get_by_type access_control lan_ac_ips)
 	local lan_ac_mode=$(uci_get_by_type access_control lan_ac_mode)
 	local router_proxy=$(uci_get_by_type access_control router_proxy)
-	if [ "$GLOBAL_SERVER" == "$UDP_RELAY_SERVER" -a "$kcp_flag" == "0" ]; then
-		ARG_UDP="-u"
-		elif [ -n "$UDP_RELAY_SERVER" ]; then
+	if [ -n "$UDP_RELAY_SERVER" ]; then
 		if [ "$kcp_flag" == "0" ]; then
 			local type=$(uci_get_by_name $UDP_RELAY_SERVER type)
 			case "$type" in
