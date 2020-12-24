@@ -735,3 +735,12 @@ msgstr "拥塞控制"
 
 msgid "Network interface to use"
 msgstr "使用的网络接口"
+
+msgid "Please fill in reset"
+msgstr "请填写 reset"
+
+msgid "The content entered is incorrect!"
+msgstr "输入的内容不正确！"
+
+msgid "Reset complete"
+msgstr "重置完成"
