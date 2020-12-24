@@ -1,12 +1,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-ssr-plus
-PKG_VERSION:=182
-PKG_RELEASE:=1
+PKG_VERSION:=181
+PKG_RELEASE:=4
+
+include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/shadowsocksr
-/etc/ssrplus/
+/etc/ssr/
 endef
 
 define Package/$(PKG_NAME)/config
@@ -44,7 +46,17 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Server
 	default y if x86_64||aarch64
 endef
 
-LUCI_TITLE:=SS/SSR/V2Ray/Trojan/NaiveProxy/Socks5/Tun LuCI interface
+PKG_CONFIG_DEPENDS:= \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_plugin \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_V2ray \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Xray \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Trojan \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_NaiveProxy \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Redsocks2 \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun \
+	CONFIG_PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Server
+
+LUCI_TITLE:=SS/SSR/V2Ray/Xray/Trojan/NaiveProxy/Socks5/Tun LuCI interface
 LUCI_PKGARCH:=all
 LUCI_DEPENDS:=+shadowsocksr-libev-alt +ipset +ip-full +iptables-mod-tproxy +dnsmasq-full +coreutils +coreutils-base64 +pdnsd-alt +wget +lua +libuci-lua \
 	+microsocks +dns2socks +shadowsocks-libev-ss-local +shadowsocksr-libev-ssr-local +shadowsocks-libev-ss-redir +simple-obfs +tcping +resolveip\
