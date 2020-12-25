@@ -79,7 +79,7 @@ function refresh_data()
 	local TMP_PATH = "/var/etc/ssrplus"
 	local function update(url, file, type, file2)
 		local Num = 1
-		refresh_cmd = "/usr/bin/wget --no-check-certificate -q -t 3 -T 10 -O /tmp/ssr-update." .. type .. " " .. url
+		refresh_cmd = "wget --no-check-certificate -q -T 10 -O /tmp/ssr-update." .. type .. " " .. url
 		sret = luci.sys.call(refresh_cmd .. " 2>/dev/null")
 		if sret == 0 then
 			if type == "gfw_data" then
