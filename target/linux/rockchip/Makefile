@@ -17,9 +17,9 @@ endef
 
 include $(INCLUDE_DIR)/target.mk
 
-DEFAULT_PACKAGES += uboot-envtools partx-utils fstrim luci-app-v2ray-server e2fsprogs mkf2fs nano kmod-gpio-button-hotplug \
+DEFAULT_PACKAGES += uboot-envtools partx-utils fstrim e2fsprogs mkf2fs nano kmod-gpio-button-hotplug \
 		    automount autocore-arm fdisk kmod-fs-f2fs kmod-fs-exfat opkg luci-app-oaf ethtool haveged htop lm-sensors \
-		    luci-app-zerotier luci-app-nfs luci-app-qbittorrent luci-app-sfe luci-app-ttyd luci-app-adguardhome 
+		    luci-app-zerotier luci-app-nfs luci-app-qbittorrent luci-app-ttyd luci-app-adguardhome
 
 KERNELNAME:=Image dtbs
 
