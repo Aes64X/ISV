@@ -21,8 +21,6 @@ Signed-off-by: Jonas Karlman <jonas-uIzNG4q0ceqzQB+pC5nmwQ@public.gmane.org>
  drivers/mmc/core/core.c | 8 ++++++++
  1 file changed, 8 insertions(+)
 
-diff --git a/drivers/mmc/core/core.c b/drivers/mmc/core/core.c
-index 5bd58b95d318..69d7021916ae 100644
 --- a/drivers/mmc/core/core.c
 +++ b/drivers/mmc/core/core.c
 @@ -1684,6 +1684,14 @@ void mmc_power_off(struct mmc_host *host)

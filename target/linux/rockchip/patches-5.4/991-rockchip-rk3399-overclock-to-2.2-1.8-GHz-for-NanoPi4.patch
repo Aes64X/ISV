@@ -1,9 +1,13 @@
 From 04202df5cb497b1934c95211cf43784ef62245a4 Mon Sep 17 00:00:00 2001
-From: Tianling Shen <cnsztl@project-openwrt.eu.org>
+From: Tianling Shen <cnsztl@gmail.com>
 Date: Sat, 19 Dec 2020 12:42:27 +0000
 Subject: [PATCH] rockchip: rk3399: overclock to 2.2/1.8 GHz for NanoPi4 devices
 
-Signed-off-by: Tianling Shen <cnsztl@project-openwrt.eu.org>
+It's stable enough to overclock cpu frequency to 2.2/1.8 GHz,
+and for better performance.
+
+Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+Co-authored-by: gzelvis <gzelvis@gmail.com>
 ---
  .../boot/dts/rockchip/rk3399-nanopi4-opp.dtsi | 153 ++++++++++++++++++
  .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |   2 +-
@@ -46,19 +50,19 @@ Signed-off-by: Tianling Shen <cnsztl@project-openwrt.eu.org>
 +		};
 +		opp05 {
 +			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <1125000>;
++			opp-microvolt = <1150000>;
 +		};
 +		opp06 {
 +			opp-hz = /bits/ 64 <1512000000>;
-+			opp-microvolt = <1150000>;
++			opp-microvolt = <1200000>;
 +		};
 + 		opp07 {
 +			opp-hz = /bits/ 64 <1608000000>;
-+			opp-microvolt = <1200000>;
++			opp-microvolt = <1250000>;
 +		};
 +		opp08 {
 +			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1250000>;
++			opp-microvolt = <1300000>;
 +		};
 +	};
 +
@@ -97,15 +101,15 @@ Signed-off-by: Tianling Shen <cnsztl@project-openwrt.eu.org>
 +		};
 +		opp07 {
 +			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <1200000>;
++			opp-microvolt = <1250000>;
 +		};
 +		opp08 {
 +			opp-hz = /bits/ 64 <2016000000>;
-+			opp-microvolt = <1250000>;
++			opp-microvolt = <1350000>;
 +		};
 +		opp09 {
 +			opp-hz = /bits/ 64 <2208000000>;
-+			opp-microvolt = <1300000>;
++			opp-microvolt = <1400000>;
 +		};
 +	};
 +
