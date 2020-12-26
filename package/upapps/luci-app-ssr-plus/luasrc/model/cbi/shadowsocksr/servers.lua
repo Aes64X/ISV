@@ -37,6 +37,7 @@ o = s:option(Button, "update_Sub", translate("Update Subscribe List"))
 o.inputstyle = "reload"
 o.description = translate("Update subscribe url list first")
 o.write = function()
+	uci:commit("shadowsocksr")
 	luci.http.redirect(luci.dispatcher.build_url("admin", "services", "shadowsocksr", "servers"))
 end
 
