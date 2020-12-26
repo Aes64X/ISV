@@ -1,7 +1,7 @@
 platform_check_image() {
 	local diskdev partdev diff
 
-	export_bootdevice && export_partdevice diskdev -2 || {
+	export_bootdevice && export_partdevice diskdev 0 || {
 		echo "Unable to determine upgrade device"
 		return 1
 	}
@@ -39,7 +39,7 @@ platform_copy_config() {
 platform_do_upgrade() {
 	local diskdev partdev diff
 
-	export_bootdevice && export_partdevice diskdev -2 || {
+	export_bootdevice && export_partdevice diskdev 0 || {
 		echo "Unable to determine upgrade device"
 		return 1
 	}
