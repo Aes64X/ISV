@@ -4,7 +4,7 @@ module("luci.controller.shadowsocksr", package.seeall)
 
 function index()
 	if not nixio.fs.access("/etc/config/shadowsocksr") then
-		return
+		call("act_reset")
 	end
 	entry({"admin", "services", "shadowsocksr"}, alias("admin", "services", "shadowsocksr", "client"), _("ShadowSocksR Plus+"), 10).dependent = true
 	entry({"admin", "services", "shadowsocksr", "client"}, cbi("shadowsocksr/client"), _("SSR Client"), 10).leaf = true
@@ -59,12 +59,11 @@ function act_ping()
 end
 
 function check_status()
+	local retstring = "1"
 	local set = "/usr/bin/ssr-check www." .. luci.http.formvalue("set") .. ".com 80 3 1"
 	sret = luci.sys.call(set)
 	if sret == 0 then
 		retstring = "0"
-	else
-		retstring = "1"
 	end
 	luci.http.prepare_content("application/json")
 	luci.http.write_json({ret = retstring})
@@ -72,9 +71,9 @@ end
 
 function refresh_data()
 	local set = luci.http.formvalue("set")
-	local retstring = luci.sys.exec("/usr/bin/lua /usr/share/shadowsocksr/update.lua " .. set)
+	local retstring = loadstring("return " .. luci.sys.exec("/usr/bin/lua /usr/share/shadowsocksr/update.lua " .. set))()
 	luci.http.prepare_content("application/json")
-	luci.http.write_json({ret = tonumber(retstring)})
+	luci.http.write_json(retstring)
 end
 
 function check_port()
