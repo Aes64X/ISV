@@ -23,10 +23,9 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
  arch/arm/dts/Makefile                      |   1 +
  arch/arm/dts/rk3399-nanopi-r4s-u-boot.dtsi |   9 ++
  arch/arm/dts/rk3399-nanopi-r4s.dts         | 163 +++++++++++++++++++++
- arch/arm/dts/rk3399-nanopi4.dtsi           |   6 +-
  board/friendlyarm/nanopi4/MAINTAINERS      |   6 +
  configs/nanopi-r4s-rk3399_defconfig        |  63 ++++++++
- 6 files changed, 245 insertions(+), 3 deletions(-)
+ 5 files changed, 242 insertions(+)
  create mode 100644 arch/arm/dts/rk3399-nanopi-r4s-u-boot.dtsi
  create mode 100644 arch/arm/dts/rk3399-nanopi-r4s.dts
  create mode 100644 configs/nanopi-r4s-rk3399_defconfig
@@ -219,31 +218,6 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +&vcc3v3_sys {
 +	vin-supply = <&vcc5v0_sys>;
 +};
---- a/arch/arm/dts/rk3399-nanopi4.dtsi
-+++ b/arch/arm/dts/rk3399-nanopi4.dtsi
-@@ -99,11 +99,11 @@
- 		regulator-name = "vbus_typec";
- 	};
- 
--	gpio-keys {
-+	keys: gpio-keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&power_key>;
-+		pinctrl-0 = <&key_pins>;
- 
- 		power {
- 			debounce-interval = <100>;
-@@ -550,7 +550,7 @@
- 	};
- 
- 	rockchip-key {
--		power_key: power-key {
-+		key_pins: key-pins {
- 			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
 --- a/board/friendlyarm/nanopi4/MAINTAINERS
 +++ b/board/friendlyarm/nanopi4/MAINTAINERS
 @@ -3,3 +3,9 @@ M:      FriendlyElec <support@friendlyarm.com>
@@ -322,4 +296,3 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +CONFIG_DISPLAY_ROCKCHIP_HDMI=y
 +CONFIG_SPL_TINY_MEMSET=y
 +CONFIG_ERRNO_STR=y
-

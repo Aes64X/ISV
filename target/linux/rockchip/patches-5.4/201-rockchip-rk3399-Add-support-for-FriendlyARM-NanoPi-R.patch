@@ -22,8 +22,7 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 ---
  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts   | 163 ++++++++++++++++++
- .../boot/dts/rockchip/rk3399-nanopi4.dtsi     |   6 +-
- 3 files changed, 167 insertions(+), 3 deletions(-)
+ 2 files changed, 164 insertions(+)
  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
 
 --- a/arch/arm64/boot/dts/rockchip/Makefile
@@ -202,28 +201,3 @@ Signed-off-by: Marty Jones <mj8263788@gmail.com>
 +&vcc3v3_sys {
 +	vin-supply = <&vcc5v0_sys>;
 +};
---- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi
-@@ -78,11 +78,11 @@
- 		regulator-name = "vbus_typec";
- 	};
- 
--	gpio-keys {
-+	keys: gpio-keys {
- 		compatible = "gpio-keys";
- 		autorepeat;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&power_key>;
-+		pinctrl-0 = <&key_pins>;
- 
- 		power {
- 			debounce-interval = <100>;
-@@ -519,7 +519,7 @@
- 	};
- 
- 	rockchip-key {
--		power_key: power-key {
-+		key_pins: key-pins {
- 			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
- 		};
- 	};
