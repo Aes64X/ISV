@@ -18,7 +18,7 @@ DEFAULT_PACKAGES += \
 	kmod-leds-gpio kmod-gpio-button-hotplug swconfig opkg exfat-fsck exfat-mkfs \
 	kmod-ath10k-ct wpad-openssl kmod-usb-storage-extras fdisk e2fsprogs \
 	kmod-usb3 kmod-usb-dwc3 ath10k-firmware-qca4019-ct luci-app-ttyd \
-	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-softethervpn \
+	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot luci-app-zerotier \
 	htop ethtool
 
 $(eval $(call BuildTarget))
