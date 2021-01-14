@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-ssr-plus
 PKG_VERSION:=182
-PKG_RELEASE:=4
+PKG_RELEASE:=5
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/shadowsocksr
@@ -12,7 +12,7 @@ endef
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray"
-	default y if x86_64||aarch64
+	default y if x86_64||arm||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan
 	bool "Include Trojan"
@@ -33,7 +33,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan-go
 	bool "Include trojan-go"
-	default n
+	default y if x86_64||arm||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun
 	bool "Include Kcptun"
