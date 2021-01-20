@@ -297,10 +297,23 @@ define Device/ruijie_rg-mtfi-m520
 	IMAGE/sysupgrade.bin/squashfs := append-rootfs | pad-to $$$${BLOCKSIZE} | sysupgrade-tar rootfs=$$$$@ | append-metadata
 	IMAGE/mmcblk0p2-kernel.bin := append-kernel | pad-to $$$${KERNEL_SIZE}
 	IMAGE/mmcblk0p3-rootfs.bin := append-rootfs | pad-rootfs
-	DEVICE_PACKAGES := ath10k-firmware-qca988x-ct e2fsprogs f2fs-tools \
-	kmod-gpio-pca953x kmod-hwmon-lm75 kmod-fs-ext4 kmod-fs-f2fs kmod-rtc-pcf8563 losetup
+	DEVICE_PACKAGES := ath10k-firmware-qca988x-ct e2fsprogs kmod-gpio-pca953x \
+	kmod-hwmon-lm75 kmod-fs-ext4 kmod-fs-f2fs losetup mkf2fs
 endef
-TARGET_DEVICES += ruijie_rg-mtfi-m520
+
+define Device/ruijie_rg-mtfi-m520-alif
+	$(Device/ruijie_rg-mtfi-m520)
+	DEVICE_VARIANT := ALIF
+	DEVICE_PACKAGES += kmod-rtc-pcf8563
+endef
+TARGET_DEVICES += ruijie_rg-mtfi-m520-alif
+
+define Device/ruijie_rg-mtfi-m520-rjis
+	$(Device/ruijie_rg-mtfi-m520)
+	DEVICE_VARIANT := RJIS
+	DEVICE_PACKAGES += kmod-rtc-ds1307
+endef
+TARGET_DEVICES += ruijie_rg-mtfi-m520-rjis
 
 define Device/tplink_c2600
 	$(call Device/TpSafeImage)

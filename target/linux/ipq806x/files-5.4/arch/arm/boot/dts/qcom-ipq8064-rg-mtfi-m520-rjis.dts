@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+
+#include "qcom-ipq8064-rg-mtfi-m520.dtsi"
+
+/ {
+	model = "Ruijie RG-MTFi-M520 RJIS";
+	compatible = "ruijie,rg-mtfi-m520-rjis", "qcom,ipq8064";
+
+	memory@0 {
+		reg = <0x42000000 0x3e000000>;
+		device_type = "memory";
+	};
+};
+
+&gsbi2 {
+	qcom,mode = <GSBI_PROT_I2C_UART>;
+	status = "okay";
+
+	i2c@124a0000 {
+		status = "okay";
+
+		lm75@48 {
+			status = "okay";
+			compatible = "lm75";
+			reg = <0x48>;
+		};
+
+		ds1307: rtc@68 {
+			status = "okay";
+			compatible = "dallas,ds1307";
+			reg = <0x68>;
+		};
+
+		tca9539@74 {
+			status = "okay";
+			compatible = "ti,tca9539";
+			reg = <0x74>;
+		};
+	};
+};
