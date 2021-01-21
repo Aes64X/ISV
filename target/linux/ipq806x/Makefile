@@ -16,11 +16,11 @@ KERNELNAME:=zImage Image dtbs
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
-	kmod-leds-gpio kmod-gpio-button-hotplug swconfig opkg nano exfat-mkfs \
-	kmod-ata-ahci kmod-ata-ahci-platform kmod-fs-exfat luci-app-ttyd \
-	kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport luci-app-cifsd \
-	kmod-phy-qcom-ipq806x-usb kmod-usb3 kmod-usb-dwc3-qcom fdisk exfat-fsck \
-	kmod-ath10k-ct wpad-openssl luci-app-autoreboot luci-app-sfe \
-	uboot-envtools
+	kmod-leds-gpio kmod-gpio-button-hotplug swconfig opkg nano exfat-mkfs kmod-qca-nss-crypto kmod-qca-nss-drv-pppoe kmod-qca-nss-drv-profile kmod-qca-nss-drv-tun6rd kmod-qca-nss-drv-tunipip6 kmod-qca-nss-drv-vlan-mgr \
+	kmod-ata-ahci kmod-ata-ahci-platform kmod-fs-exfat luci-app-ttyd kmod-qca-nss-drv kmod-qca-nss-drv-l2tpv2 \
+	kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport luci-app-cifsd kmod-qca-nss-drv-dtlsmgr kmod-qca-nss-gmac \
+	kmod-phy-qcom-ipq806x-usb kmod-usb3 kmod-usb-dwc3-qcom fdisk exfat-fsck kmod-qca-nss-drv-gre \
+	kmod-ath10k-ct wpad-openssl luci-app-autoreboot kmod-nss-ifb kmod-qca-nss-cfi-cryptoapi kmod-qca-nss-drv-lag-mgr \
+	uboot-envtools kmod-qca-nss-drv-qdisc
 
 $(eval $(call BuildTarget))
