@@ -2,7 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-ssr-plus
 PKG_VERSION:=182
-PKG_RELEASE:=5
+PKG_RELEASE:=8
 
 define Package/$(PKG_NAME)/conffiles
 /etc/config/shadowsocksr
@@ -32,8 +32,8 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray
 	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan-go
-	bool "Include trojan-go"
-	default y if x86_64||arm||aarch64
+	bool "Include Trojan-go"
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun
 	bool "Include Kcptun"
