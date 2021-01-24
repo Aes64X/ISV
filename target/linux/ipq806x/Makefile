@@ -21,6 +21,6 @@ DEFAULT_PACKAGES += \
 	kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport luci-app-cifsd kmod-qca-nss-drv-dtlsmgr kmod-qca-nss-gmac \
 	kmod-phy-qcom-ipq806x-usb kmod-usb3 kmod-usb-dwc3-qcom fdisk exfat-fsck kmod-qca-nss-drv-gre \
 	kmod-ath10k-ct wpad-openssl luci-app-autoreboot kmod-nss-ifb kmod-qca-nss-cfi-cryptoapi kmod-qca-nss-drv-lag-mgr \
-	uboot-envtools kmod-qca-nss-drv-qdisc kmod-qca-nss-ecm-standard
+	uboot-envtools kmod-qca-nss-drv-qdisc kmod-qca-nss-ecm-standard kmod-usb-storage-extras kmod-usb-storage-uas
 
 $(eval $(call BuildTarget))
