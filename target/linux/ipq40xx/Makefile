@@ -15,7 +15,7 @@ KERNELNAME:=zImage Image dtbs
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-usb-dwc3-qcom \
-	kmod-leds-gpio kmod-gpio-button-hotplug swconfig exfat-fsck exfat-mkfs \
+	kmod-leds-gpio kmod-gpio-button-hotplug swconfig exfat-fsck exfat-mkfs luci-app-nps \
 	kmod-ath10k-ct wpad-openssl kmod-usb-storage-extras fdisk e2fsprogs \
 	kmod-usb3 kmod-usb-dwc3 ath10k-firmware-qca4019-ct luci-app-ttyd \
 	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot \
