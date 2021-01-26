@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-usb-dwc3-qcom \
 	kmod-leds-gpio kmod-gpio-button-hotplug swconfig exfat-fsck exfat-mkfs luci-app-nps \
-	kmod-ath10k-ct wpad-openssl kmod-usb-storage-extras fdisk e2fsprogs \
+	kmod-ath10k-ct wpad-openssl kmod-usb-storage-extras fdisk e2fsprogs luci-app-zerotier \
 	kmod-usb3 kmod-usb-dwc3 ath10k-firmware-qca4019-ct luci-app-ttyd nano htop \
 	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot luci-app-qbittorrent \
 	htop ethtool
