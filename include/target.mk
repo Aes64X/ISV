@@ -16,7 +16,7 @@ DEVICE_TYPE?=router
 DEFAULT_PACKAGES:=base-files libc libgcc busybox mtd uci netifd fstools uclient-fetch logd urandom-seed urngd \
 block-mount kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw wget libustream-openssl ca-certificates \
 default-settings luci luci-app-upnp luci-app-webadmin luci-app-fileassistant kmod-fs-ext4 luci-theme-argon \
-luci-app-ssr-plus luci-app-control-webrestriction luci-app-control-weburl \
+luci-app-control-webrestriction luci-app-control-weburl \
 luci-app-vlmcsd luci-app-timecontrol \
 # For the basic set
 DEFAULT_PACKAGES.basic:=
