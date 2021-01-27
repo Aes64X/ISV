@@ -12,7 +12,7 @@ endef
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks
 	bool "Include Shadowsocks"
-	default y if i386||x86_64||arm||aarch64
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_plugin
 	bool "Include Shadowsocks V2ray Plugin"
@@ -20,11 +20,11 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_plugin
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray (V2RAY/Trojan-GO implemented)"
-	default y if i386||x86_64||arm||aarch64
+	default y if x86_64||arm||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan
 	bool "Include Trojan (OpenSSL)"
-	default n if i386||x86_64||arm||aarch64
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Redsocks2
 	bool "Include Redsocks2"
@@ -41,7 +41,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_Kcptun
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_Server
 	bool "Include ShadowsocksR Server"
-	default y if i386||x86_64||arm||aarch64
+	default n
 endef
 
 LUCI_TITLE:=SS/SSR/V2Ray/Trojan/NaiveProxy/Socks5/Tun LuCI interface
