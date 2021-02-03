@@ -20,7 +20,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_plugin
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray (V2RAY/Trojan-GO implemented)"
-	default y if x86_64||arm||aarch64
+	default n
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan
 	bool "Include Trojan (OpenSSL)"
