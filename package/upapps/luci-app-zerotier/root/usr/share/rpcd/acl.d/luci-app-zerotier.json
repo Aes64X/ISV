@@ -1,11 +1,18 @@
 {
- 	"luci-app-zerotier": {
- 		"description": "Grant UCI access for luci-app-zerotier",
- 		"read": {
- 			"uci": [ "zerotier" ]
- 		},
- 		"write": {
- 			"uci": [ "zerotier" ]
- 		}
- 	}
+	"luci-app-zerotier": {
+		"description": "Grant UCI access for luci-app-zerotier",
+		"read": {
+			"ubus": {
+				"luci.zerotier": [ "get_status" ],
+				"luci": [ "setInitAction" ]
+			},
+			"file": {
+				"/bin/pidof zerotier-one": [ "exec" ]
+			},
+			"uci": [ "zerotier" ]
+		},
+		"write": {
+			"uci": [ "zerotier" ]
+		}
+	}
 }
