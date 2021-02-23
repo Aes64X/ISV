@@ -1,53 +1,28 @@
-msgid "ZeroTier"
-msgstr "虚拟局域网互联"
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Gtranslator 2.91.7\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "The open source <a href=\"https://github.com/zerotier/ZeroTierOne\" target=\"_blank\">ZeroTier</a> can aggregate clients under the serial or WAN network into a virtual route to achieve peer-to-peer mutual access, such as remote access to the NAS commissioning and monitoring as the coaxial of a certain encrypted traffic!"
-msgstr "无需上层网络环境将加入到</font><a style=\"cursor:pointer;color: #1E90FF;\" onclick=\"window.open('https://github.com/zerotier/ZeroTierOne')\">ZeroTier</a>网络的客户端接入到虚拟的局域网(可以是跨省或跨国的客户端)使用方式与普通路由局域网一样只是换了个访问IP地址(</font><a style=\"cursor:pointer;color: #1E90FF;\" onclick=\"window.open('https://github.com/zerotier/ZeroTierOne')\">ZeroTier</a>分配的IP地址)<br>普通局域网可以做的事均可以速度理论上取决于实际网络带宽，比如传输文件中转神秘数据流量远程打印机视频监控局域网聊天私有WEB服务等。取决于对局域网应用的想象力！<br/><a style=\"cursor:pointer;color: #1E90FF;\" onclick=\"window.open('https://my.zerotier.com/network')\">点击跳转到Zerotier官网管理平台</a>，注册和管理网络，并允许客户端接入访问你私人网路(新接入的节点默认不允许访问)免费版每个帐号有50个可用客户端！"
+msgid "Zerotier is an open source, cross-platform and easy to use virtual LAN"
+msgstr "Zerotier是一个开源，跨平台，而且适合内网穿透互联的傻瓜配置虚拟 VPN LAN"
 
-msgid "network ID"
-msgstr "网络ID"
+msgid "Auto NAT Clients"
+msgstr "自动允许客户端NAT"
 
-msgid "Enable or disable network"
-msgstr "启用或禁用网络"
+msgid "Allow zerotier clients access your LAN network"
+msgstr "允许Zerotier的拨入客户端访问路由器LAN资源（需要在 Zerotier管理页面设定到LAN网段的路由表）"
 
-msgid "Connect to your private network"
-msgstr "连接到您创建专属网络"
+msgid "Create or manage your zerotier network, and auth clients who could access"
+msgstr "点击跳转到Zerotier官网管理平台，新建或者管理网络，并允许客户端接入访问你私人网路（新接入的节点默认不允许访问）"
 
-msgid "Because the startup script uses procd, please close it before opening it"
-msgstr "由于启动脚本使用 PROCD 因其进程守护导致不能正确加入后续配置的缘故<br>更改请先关闭后再开启方可正常或者手动执行 \"/etc/init.d/zerotier restart\""
-
-msgid "Identification code of access network domain"
-msgstr "接入网络域的标识码"
-
-msgid "Device identification code"
-msgstr "设备识别码"
-
-msgid "Configure client"
-msgstr "配置客户端"
-
-msgid "Connection time"
-msgstr "连接时间"
-
-msgid "Interface information"
+msgid "Interface Info"
 msgstr "接口信息"
 
-msgid "Zerotier Interface information"
-msgstr "ZEROTIER 接口信息"
+msgid "Zerotier access control"
+msgstr "Zerotier 准入控制"
 
-msgid "Interface information for the activity"
-msgstr "活动的接口信息"
-
-msgid "There is no active interface information"
-msgstr "没有活动的接口信息"
-
-msgid "NAT state"
-msgstr "NAT 状态"
-
-msgid "Internet ID"
-msgstr "网络 ID"
-
-msgid "Not ready"
-msgstr "未就绪"
-
-msgid "The only basis for identifying the device (the first run will be automatically generated, please do not move if not necessary, such as device migration)"
-msgstr "对设备进行识别唯一依据(首次运行会自动生成，如非必要请勿动比如设备迁移)"
+msgid "Manual Config"
+msgstr "手动设置"
