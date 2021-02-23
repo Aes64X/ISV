@@ -18,7 +18,7 @@ DEFAULT_PACKAGES += \
 	kmod-leds-gpio kmod-gpio-button-hotplug swconfig exfat-fsck exfat-mkfs luci-app-nps \
 	kmod-usb-storage-extras fdisk e2fsprogs luci-app-zerotier \
 	kmod-usb3 kmod-usb-dwc3 luci-app-ttyd nano htop \
-	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot luci-app-qbittorrent \
+	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot \
 	htop ethtool
 
 $(eval $(call BuildTarget))
