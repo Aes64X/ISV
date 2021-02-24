@@ -1,75 +1,29 @@
 #!/bin/sh
 
-# 替换默认脚本 /etc/zerotier.start
-# 运行结果写入系统日志 自行查看
-# 请自行删除无用接口
-# 默认超时(秒) 自行设置
-export cs=200
-# 默认ip段 自行更换
-export def_segment="177.77.77.0/27"
-
 zero_enable="$(uci get zerotier.sample_config.enabled)"
 
 [ "${zero_enable}" -ne "1" ] && exit 0
 
 [ -f "/tmp/zero.log" ] && {
-	while [ "$(ifconfig | grep '^zt' | awk '{print $1}')" = "" ]
-	do
-		sleep 1
-	done
+	while [ "$(ifconfig | grep 'zt' | awk '{print $1}')" = "" ]
+do 
+   sleep 1
+done
 }
 
 nat_enable="$(uci get zerotier.sample_config.nat)"
-zt0="$(ifconfig | grep '^zt' | awk '{print $1}')"
+zt0="$(ifconfig | grep 'zt' | awk '{print $1}')"
+
 echo "${zt0}" > "/tmp/zt.nif"
 
 [ "${nat_enable}" -eq "1" ] && {
 	for i in ${zt0}
 	do
-		dt=0
-		ipaddr=$(uci get network.${i}.ipaddr 2>/dev/null)
-		ip_segment="$(ip route | grep "dev $i proto" | awk '{print $1}')"
-		logger -t "内网穿透" "虚拟网卡${i}正在获取ip，限时${cs}秒 虚拟网卡ip:${ipaddr} 路由:${ip_segment}"
-		nip=$(zerotier-cli listnetworks | grep $i | grep -Eo '[0-9\/\.]+$')
-		while ([ ! "${nip}" ] && [ ${dt} -lt ${cs} ]); do
-			dt=`expr ${dt} + 1`
-			sleep 1
-			nip=$(zerotier-cli listnetworks | grep $i | grep -Eo '[0-9\/\.]+$')
-		done
-		[ ! "${nip}" ] && {
-			[ "${ipaddr}" ] && nip=${ipaddr}'/24' || nip=${def_segment}
-			logger -t "内网穿透" '超时使用默认ip'
-		}
-		logger -t "内网穿透" "等待${dt}秒,获取ip:" ${nip};
-		if [ ! "${ipaddr}" ]; then
-			logger -t "内网穿透" "创建新接口 ${i} ${nip%/*}"
-			uci set network.$i=interface
-			uci set network.$i.proto=static
-			uci set network.$i.ifname=$i
-			uci set network.$i.ipaddr="${nip%/*}"
-			uci set network.$i.netmask=255.255.255.0
-			uci commit network
-			service network reload >/dev/null 2>&1
-			ifup $i
-		elif [ "${ipaddr}" != "${nip%/*}" ]; then
-			logger -t "内网穿透" "虚拟网卡${i}的ip地址已变更 ${ipaddr} to ${nip%/*}"
-			uci set network.$i.ipaddr="${nip%/*}"
-			uci commit network
-			service network reload >/dev/null 2>&1
-			ifup $i
-		fi
 		ip_segment=""
 		iptables -I FORWARD -i "$i" -j ACCEPT
 		iptables -I FORWARD -o "$i" -j ACCEPT
 		iptables -t nat -I POSTROUTING -o "$i" -j MASQUERADE
 		ip_segment="$(ip route | grep "dev $i proto" | awk '{print $1}')"
-		if [ ! "${ip_segment}" ]; then
-			ip_segment=$(echo ${nip} | sed 's/\d\+\//0\//')
-			logger -t "内网穿透" "获取ip route失败!使用默认."
-		else
-			logger -t "内网穿透" "获取ip route成功!"
-		fi
-		[ "${ip_segment}" ] && iptables -t nat -I POSTROUTING -s "${ip_segment}" -j MASQUERADE
-		logger -t "内网穿透" "更新接口 ${i} 防火墙自动nat规则:${ip_segment}"
+		iptables -t nat -I POSTROUTING -s "${ip_segment}" -j MASQUERADE
 	done
 }
