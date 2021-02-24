@@ -13,15 +13,14 @@ FEATURES:=squashfs vdi vmdk pcmcia fpu boot-part rootfs-part
 SUBTARGETS:=64 generic legacy geode
 
 KERNEL_PATCHVER:=5.4
-KERNEL_TESTING_PATCHVER:=5.4
 
 KERNELNAME:=bzImage
 
 include $(INCLUDE_DIR)/target.mk
 
-DEFAULT_PACKAGES += partx-utils fdisk e2fsprogs kmod-mmc-spi \
-kmod-igb kmod-igbvf \
-autocore luci-proto-bonding ca-certificates \
+DEFAULT_PACKAGES += partx-utils fdisk e2fsprogs kmod-mmc-spi luci-app-oaf ethtool htop \
+kmod-igb kmod-igbvf luci-app-ttyd luci-app-autoreboot luci-app-nps luci-app-zerotier \
+autocore luci-proto-bonding ca-certificates nano \
 
 $(eval $(call BuildTarget))
 
