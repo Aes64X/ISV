@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 ARCH:=i386
 BOARD:=x86
 BOARDNAME:=x86
-FEATURES:=squashfs vdi vmdk pcmcia fpu boot-part rootfs-part
+FEATURES:=ext4 vdi pcmcia fpu boot-part rootfs-part
 SUBTARGETS:=64 generic legacy geode
 
 KERNEL_PATCHVER:=5.4
@@ -19,7 +19,7 @@ KERNELNAME:=bzImage
 include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += partx-utils fdisk e2fsprogs kmod-mmc-spi luci-app-oaf ethtool htop \
-kmod-igb kmod-igbvf luci-app-ttyd luci-app-autoreboot luci-app-nps luci-app-zerotier \
+luci-app-ttyd luci-app-autoreboot luci-app-nps luci-app-zerotier \
 autocore luci-proto-bonding ca-certificates nano \
 
 $(eval $(call BuildTarget))
