@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += partx-utils fdisk e2fsprogs kmod-mmc-spi luci-app-oaf ethtool htop \
 luci-app-ttyd luci-app-autoreboot luci-app-nps luci-app-zerotier luci-app-ssr-plus \
-autocore luci-proto-bonding ca-certificates nano \
+autocore luci-proto-bonding ca-certificates nano luci-app-dnsfilter \
 
 $(eval $(call BuildTarget))
 
