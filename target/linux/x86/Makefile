@@ -20,7 +20,7 @@ include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += partx-utils fdisk e2fsprogs kmod-mmc-spi luci-app-oaf ethtool htop kmod-fs-exfat amd64-microcode \
 luci-app-ttyd luci-app-autoreboot luci-app-nps luci-app-zerotier luci-app-ssr-plus luci-app-cifsd intel-microcode \
-autocore luci-proto-bonding ca-certificates nano luci-app-dnsfilter luci-app-qbittorrent exfat-fsck exfat-mkfs \
+autocore luci-proto-bonding ca-certificates nano luci-app-dnsfilter luci-app-qbittorrent exfat-fsck exfat-mkfs luci-app-docker \
 
 $(eval $(call BuildTarget))
 
