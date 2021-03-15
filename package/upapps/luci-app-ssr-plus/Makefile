@@ -12,7 +12,7 @@ endef
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks
 	bool "Include Shadowsocks"
-	default y x86_64||aarch64
+	default y if x86_64||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust
 	bool "Include Shadowsocks Rust (AEAD ciphers only)"
