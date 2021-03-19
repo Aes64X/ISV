@@ -1176,21 +1176,21 @@ define KernelPackage/mlx5-core
   DEPENDS:=@PCI_SUPPORT +kmod-ptp
   FILES:=$(LINUX_DIR)/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko
   KCONFIG:= CONFIG_MLX5_CORE \
+	CONFIG_MLX5_FPGA=n \
 	CONFIG_MLX5_CORE_EN=y \
+	CONFIG_MLX5_EN_ARFS=n \
+	CONFIG_MLX5_EN_RXNFC=y \
+	CONFIG_MLX5_MPFS=y \
+	CONFIG_MLX5_ESWITCH=n \
+	CONFIG_MLX5_TC_CT=n \
 	CONFIG_MLX5_CORE_EN_DCB=n \
 	CONFIG_MLX5_CORE_IPOIB=n \
-	CONFIG_MLX5_EN_ARFS=n \
-	CONFIG_MLX5_EN_IPSEC=n \
-	CONFIG_MLX5_EN_RXNFC=y \
-	CONFIG_MLX5_EN_TLS=n \
-	CONFIG_MLX5_ESWITCH=n \
-	CONFIG_MLX5_FPGA=n \
 	CONFIG_MLX5_FPGA_IPSEC=n \
+	CONFIG_MLX5_EN_IPSEC=n \
 	CONFIG_MLX5_FPGA_TLS=n \
-	CONFIG_MLX5_MPFS=y \
-	CONFIG_MLX5_SW_STEERING=n \
-	CONFIG_MLX5_TC_CT=n \
-	CONFIG_MLX5_TLS=n
+	CONFIG_MLX5_TLS=n \
+	CONFIG_MLX5_EN_TLS=n \
+	CONFIG_MLX5_SW_STEERING=n
   AUTOLOAD:=$(call AutoProbe,mlx5_core)
 endef
 
@@ -1219,3 +1219,22 @@ define KernelPackage/sfp/description
 endef
 
 $(eval $(call KernelPackage,sfp))
+
+define KernelPackage/bnxt
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Broadcom NetXtreme-C/E support
+  DEPENDS:=@PCI_SUPPORT +kmod-lib-crc32c +kmod-ptp +kmod-hwmon-core
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/broadcom/bnxt/bnxt_en.ko
+  KCONFIG:= CONFIG_BNXT \
+	CONFIG_BNXT_SRIOV=y \
+	CONFIG_BNXT_FLOWER_OFFLOAD=n \
+	CONFIG_BNXT_DCB=n \
+	CONFIG_BNXT_HWMON=y
+  AUTOLOAD:=$(call AutoProbe,bnxt_en)
+endef
+
+define KernelPackage/bnxt/description
+  This driver supports Broadcom NetXtreme-C/E 10/25/40/50 gigabit Ethernet cards.
+endef
+
+$(eval $(call KernelPackage,bnxt))
