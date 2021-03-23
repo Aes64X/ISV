@@ -97,7 +97,6 @@
 };
 
 &switch0 {
-	/* must delete compatible property */
 	/delete-property/ compatible;
 	phy-mode = "rgmii";
 };

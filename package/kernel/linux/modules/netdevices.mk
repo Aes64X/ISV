@@ -1149,26 +1149,97 @@ endef
 
 $(eval $(call KernelPackage,be2net))
 
-define KernelPackage/mlx4-core
+
+define KernelPackage/sfp
   SUBMENU:=$(NETWORK_DEVICES_MENU)
-  TITLE:=Mellanox ConnectX(R) mlx4 core Network Driver
-  DEPENDS:=@PCI_SUPPORT +kmod-ptp
+  TITLE:=SFP cage support
+  DEPENDS:=+kmod-i2c-core +kmod-hwmon-core +kmod-phylink
+  KCONFIG:= \
+	CONFIG_SFP \
+	CONFIG_MDIO_I2C
   FILES:= \
-	$(LINUX_DIR)/drivers/net/ethernet/mellanox/mlx4/mlx4_core.ko \
-	$(LINUX_DIR)/drivers/net/ethernet/mellanox/mlx4/mlx4_en.ko
-  KCONFIG:= CONFIG_MLX4_EN \
-	CONFIG_MLX4_EN_DCB=n \
-	CONFIG_MLX4_CORE=y \
-	CONFIG_MLX4_CORE_GEN2=y \
-	CONFIG_MLX4_DEBUG=n
-  AUTOLOAD:=$(call AutoProbe,mlx4_core mlx4_en)
+	$(LINUX_DIR)/drivers/net/phy/sfp.ko \
+	$(LINUX_DIR)/drivers/net/phy/mdio-i2c.ko
+  AUTOLOAD:=$(call AutoProbe,mdio-i2c sfp)
 endef
 
-define KernelPackage/mlx4-core/description
-  Supports Mellanox ConnectX-3 series and previous cards
+define KernelPackage/sfp/description
+ Kernel module to support SFP cages
 endef
 
-$(eval $(call KernelPackage,mlx4-core))
+$(eval $(call KernelPackage,sfp))
+
+define KernelPackage/igc
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Intel(R) Ethernet Controller I225 Series support
+  DEPENDS:=@PCI_SUPPORT
+  KCONFIG:=CONFIG_IGC
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/igc/igc.ko
+  AUTOLOAD:=$(call AutoProbe,igc)
+endef
+
+define KernelPackage/igc/description
+  Kernel modules for Intel(R) Ethernet Controller I225 Series
+endef
+
+$(eval $(call KernelPackage,igc))
+
+define KernelPackage/sfc
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Solarflare SFC9000/SFC9100/EF100-family support
+  DEPENDS:=@PCI_SUPPORT +kmod-mdio +kmod-lib-crc32c +kmod-ptp +kmod-hwmon-core
+  KCONFIG:= \
+	CONFIG_SFC \
+	CONFIG_SFC_MTD=y \
+	CONFIG_SFC_MCDI_MON=y \
+	CONFIG_SFC_MCDI_LOGGING=y \
+	CONFIG_SFC_SRIOV=y
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/sfc/sfc.ko
+  AUTOLOAD:=$(call AutoProbe,sfc)
+endef
+
+define KernelPackage/sfc/description
+  Solarflare SFC9000/SFC9100/EF100-family support
+  Solarflare EF100 support requires at least kernel version 5.9
+endef
+
+$(eval $(call KernelPackage,sfc))
+
+define KernelPackage/sfc-falcon
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Solarflare SFC4000 support
+  DEPENDS:=@PCI_SUPPORT +kmod-mdio +kmod-lib-crc32c +kmod-i2c-algo-bit
+  KCONFIG:= \
+	CONFIG_SFC_FALCON \
+	CONFIG_SFC_FALCON_MTD=y
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/sfc/falcon/sfc-falcon.ko
+  AUTOLOAD:=$(call AutoProbe,sfc-falcon)
+endef
+
+define KernelPackage/sfc-falcon/description
+  Solarflare SFC4000 support
+endef
+
+$(eval $(call KernelPackage,sfc-falcon))
+
+define KernelPackage/bnxt
+  SUBMENU:=$(NETWORK_DEVICES_MENU)
+  TITLE:=Broadcom NetXtreme-C/E support
+  DEPENDS:=@PCI_SUPPORT +kmod-lib-crc32c +kmod-ptp +kmod-hwmon-core
+  FILES:=$(LINUX_DIR)/drivers/net/ethernet/broadcom/bnxt/bnxt_en.ko
+  KCONFIG:= CONFIG_BNXT \
+	CONFIG_BNXT_SRIOV=y \
+	CONFIG_BNXT_FLOWER_OFFLOAD=n \
+	CONFIG_BNXT_DCB=n \
+	CONFIG_BNXT_HWMON=y
+  AUTOLOAD:=$(call AutoProbe,bnxt_en)
+endef
+
+define KernelPackage/bnxt/description
+  This driver supports Broadcom NetXtreme-C/E 10/25/40/50 gigabit Ethernet cards.
+endef
+
+$(eval $(call KernelPackage,bnxt))
 
 define KernelPackage/mlx5-core
   SUBMENU:=$(NETWORK_DEVICES_MENU)
@@ -1201,57 +1272,3 @@ define KernelPackage/mlx5-core/description
 endef
 
 $(eval $(call KernelPackage,mlx5-core))
-
-
-define KernelPackage/sfp
-  SUBMENU:=$(NETWORK_DEVICES_MENU)
-  TITLE:=SFP cage support
-  DEPENDS:=+kmod-i2c-core +kmod-hwmon-core +kmod-phylink
-  KCONFIG:= \
-	CONFIG_SFP \
-	CONFIG_MDIO_I2C
-  FILES:= \
-	$(LINUX_DIR)/drivers/net/phy/sfp.ko \
-	$(LINUX_DIR)/drivers/net/phy/mdio-i2c.ko
-  AUTOLOAD:=$(call AutoProbe,mdio-i2c sfp)
-endef
-
-define KernelPackage/sfp/description
- Kernel module to support SFP cages
-endef
-
-$(eval $(call KernelPackage,sfp))
-
-define KernelPackage/bnxt
-  SUBMENU:=$(NETWORK_DEVICES_MENU)
-  TITLE:=Broadcom NetXtreme-C/E support
-  DEPENDS:=@PCI_SUPPORT +kmod-lib-crc32c +kmod-ptp +kmod-hwmon-core
-  FILES:=$(LINUX_DIR)/drivers/net/ethernet/broadcom/bnxt/bnxt_en.ko
-  KCONFIG:= CONFIG_BNXT \
-	CONFIG_BNXT_SRIOV=y \
-	CONFIG_BNXT_FLOWER_OFFLOAD=y \
-	CONFIG_BNXT_DCB=n \
-	CONFIG_BNXT_HWMON=y
-  AUTOLOAD:=$(call AutoProbe,bnxt_en)
-endef
-
-define KernelPackage/bnxt/description
-  This driver supports Broadcom NetXtreme-C/E 10/25/40/50 gigabit Ethernet cards.
-endef
-
-$(eval $(call KernelPackage,bnxt))
-
-define KernelPackage/igc
-  SUBMENU:=$(NETWORK_DEVICES_MENU)
-  TITLE:=Intel(R) Ethernet Controller I225 Series support
-  DEPENDS:=@PCI_SUPPORT @!LINUX_4_19
-  KCONFIG:=CONFIG_IGC
-  FILES:=$(LINUX_DIR)/drivers/net/ethernet/intel/igc/igc.ko
-  AUTOLOAD:=$(call AutoProbe,igc)
-endef
-
-define KernelPackage/igc/description
-  Kernel modules for Intel(R) Ethernet Controller I225 Series
-endef
-
-$(eval $(call KernelPackage,igc))

@@ -15,10 +15,10 @@ KERNELNAME:=zImage Image dtbs
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-usb-dwc3-qcom \
-	kmod-leds-gpio kmod-gpio-button-hotplug swconfig exfat-fsck exfat-mkfs luci-app-nps \
-	kmod-usb-storage-extras fdisk e2fsprogs luci-app-zerotier \
-	kmod-usb3 kmod-usb-dwc3 luci-app-ttyd nano htop \
-	kmod-fs-exfat luci-app-cifsd luci-app-oaf luci-app-autoreboot luci-app-qbittorrent \
+	kmod-leds-gpio kmod-gpio-button-hotplug swconfig \
+	kmod-ath10k-ct wpad-openssl \
+	kmod-usb3 kmod-usb-dwc3 ath10k-firmware-qca4019-ct \
+	autocore-arm automount autosamba luci-app-adbyby-plus luci-app-ipsec-vpnd luci-app-unblockmusic luci-app-cpufreq luci-app-zerotier \
 	htop ethtool
 
 $(eval $(call BuildTarget))
