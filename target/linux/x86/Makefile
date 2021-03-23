@@ -20,7 +20,7 @@ KERNELNAME:=bzImage
 include $(INCLUDE_DIR)/target.mk
 
 DEFAULT_PACKAGES += partx-utils mkf2fs fdisk e2fsprogs kmod-mmc-spi kmod-sdhci \
-kmod-tulip kmod-vmxnet3 kmod-fs-f2fs \
+kmod-bnxt kmod-fs-f2fs kmod-igc \
 htop lm-sensors autocore-x86 luci-proto-bonding luci-app-zerotier ca-certificates \
 kmod-mlx5-core \
 
