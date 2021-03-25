@@ -4,9 +4,11 @@
 
 不再支持任何的老旧架构单核处理器，如 QCA9563 等...... 或内核空间小于2M的设备及存储器小于32M的设备
 
-定向支持 Kernel_5.4 x86、XiaoYu C3(HWNAT)、IPQ40xx(仅有线)、Aeroive AP330(挂QCA9880\9882)、Aerohive AP121(Kernel_4.14)
+定向支持 Kernel_4.19 x86、Kernel_5.4 IPQ40xx(仅有线)、Kernel_5.4 IPQ806X、Kernel_5.4 Aeroive AP330(挂QCA9880\9882)
 
-现已支持 NanoPi R4S （4GB限定、高频支持）
+Kernel_5.4 NanoPi R4S （4GB限定）
+
+x86支持25GbE光纤网络
 
 建议使用 Ubuntu 18.04               (请勿使用 Ubuntu 20.04)
 
