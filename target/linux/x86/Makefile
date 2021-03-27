@@ -12,17 +12,17 @@ BOARDNAME:=x86
 FEATURES:=squashfs vdi pcmcia fpu boot-part rootfs-part
 SUBTARGETS:=64 generic legacy geode
 
-KERNEL_PATCHVER:=4.19
+KERNEL_PATCHVER:=5.4
 KERNEL_TESTING_PATCHVER:=5.4
 
 KERNELNAME:=bzImage
 
 include $(INCLUDE_DIR)/target.mk
 
-DEFAULT_PACKAGES += partx-utils mkf2fs fdisk e4crypt kmod-mmc-spi kmod-sdhci luci-app-docker intel-microcode \
-kmod-bnxt kmod-fs-f2fs kmod-igc luci-app-autotimeset luci-app-cifsd luci-app-dnsfilter exfat-fsck luci-app-flowoffload \
-htop lm-sensors autocore-x86 luci-proto-bonding luci-app-zerotier ca-certificates nano exfat-mkfs \
-kmod-mlx5-core luci-app-nps luci-app-oaf luci-app-ssr-plus luci-app-ttyd kmod-fs-exfat f2fs-tools \
+DEFAULT_PACKAGES += partx-utils mkf2fs fdisk e4crypt kmod-mmc-spi kmod-sdhci kmod-igbvf \
+kmod-fs-f2fs luci-app-autotimeset luci-app-dnsfilter luci-app-flowoffload kmod-vmxnet3 \
+htop lm-sensors autocore-x86 luci-proto-bonding luci-app-zerotier ca-certificates nano \
+luci-app-nps luci-app-oaf luci-app-ssr-plus luci-app-ttyd f2fs-tools kmod-e1000 \
 
 $(eval $(call BuildTarget))
 
