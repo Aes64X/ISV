@@ -15,7 +15,7 @@ KERNELNAME:=zImage Image dtbs
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-leds-gpio kmod-gpio-button-hotplug swconfig luci-app-autotimeset luci-app-dnsfilter \
-	luci-app-zerotier luci-app-nps luci-app-oaf luci-app-ttyd \
-	htop ethtool
+	luci-app-zerotier luci-app-nps luci-app-oaf luci-app-ttyd lm-sensors luci-app-ssr-plus \
+	htop ethtool nano autocore-arm
 
 $(eval $(call BuildTarget))
