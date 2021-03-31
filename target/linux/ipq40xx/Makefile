@@ -16,6 +16,6 @@ include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-leds-gpio kmod-gpio-button-hotplug swconfig luci-app-dnsfilter \
 	luci-app-zerotier luci-app-nps luci-app-oaf luci-app-ttyd luci-app-ssr-plus \
-	htop ethtool nano luci-app-n2n_v2
+	htop ethtool nano luci-app-n2n_v2 luci-app-arpbind
 
 $(eval $(call BuildTarget))
