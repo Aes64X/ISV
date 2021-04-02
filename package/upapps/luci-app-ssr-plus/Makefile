@@ -12,7 +12,7 @@ endef
 define Package/$(PKG_NAME)/config
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks
 	bool "Include Shadowsocks"
-	default y if x86_64||aarch64||arm
+	default y if x86_64||arm||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks_Rust
 	bool "Include Shadowsocks Rust (AEAD ciphers only)"
@@ -25,7 +25,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_V2ray_plugin
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Xray
 	bool "Include Xray (V2RAY/Trojan-GO implemented)"
-	default y if x86_64||aarch64||arm
+	default y if x86_64||arm||aarch64
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_Trojan
 	bool "Include Trojan (OpenSSL)"
