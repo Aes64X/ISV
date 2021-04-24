@@ -21,6 +21,5 @@ endef
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += kmod-leds-gpio kmod-gpio-button-hotplug luci-app-flowoffload luci-app-arpbind luci-app-dnsfilter
-luci-app-n2n_v2 luci-app-nps luci-app-oaf luci-app-ssr-plus luci-app-ttyd luci-app-zerotier nano htop
 
 $(eval $(call BuildTarget))
