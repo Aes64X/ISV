@@ -177,7 +177,7 @@ define Device/asus_map-ac2200
 	DEVICE_VENDOR := ASUS
 	DEVICE_MODEL := Lyra (MAP-AC2200)
 	SOC := qcom-ipq4019
-	DEVICE_PACKAGES := ath10k-firmware-qca9888-ct kmod-ath3k kmod-ath10k-ct wpad-openssl ath10k-firmware-qca4019-ct
+	DEVICE_PACKAGES := ath10k-firmware-qca9888-ct kmod-ath10k-ct wpad-openssl ath10k-firmware-qca4019-ct
 endef
 TARGET_DEVICES += asus_map-ac2200
 
