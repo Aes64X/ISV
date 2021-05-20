@@ -10,8 +10,6 @@ uci commit system
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 
-wifi down
-
 ln -sf /sbin/ip /usr/bin/ip
 
 sed -i 's#http://downloads.openwrt.org#https://mirrors.cloud.tencent.com/lede#g' /etc/opkg/distfeeds.conf
@@ -38,8 +36,6 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 sed -i 's/cbi.submit\"] = true/cbi.submit\"] = \"1\"/g' /usr/lib/lua/luci/dispatcher.lua
 
 echo 'hsts=0' > /root/.wgetrc
-
-wifi down
 
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
