@@ -16,11 +16,7 @@ KERNELNAME:=zImage Image dtbs
 
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
-	kmod-leds-gpio kmod-gpio-button-hotplug swconfig \
-	kmod-ata-ahci kmod-ata-ahci-platform \
-	kmod-usb-ohci kmod-usb2 kmod-usb-ledtrig-usbport \
-	kmod-phy-qcom-ipq806x-usb kmod-usb3 kmod-usb-dwc3-qcom \
-	kmod-ath10k-ct wpad-openssl \
-	autocore-arm uboot-envtools
+	kmod-leds-gpio kmod-gpio-button-hotplug swconfig luci-app-zerotier luci-app-frpc luci-app-frps luci-app-oaf luci-app-ttyd luci-app-ssr-plus \
+	uboot-envtools luci-app-wol nano luci-app-n2n_v2 luci-app-arpbind htop ethtool luci-app-dnsfilter
 
 $(eval $(call BuildTarget))
